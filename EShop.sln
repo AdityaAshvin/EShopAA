@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.ApplicationCore", "Or
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Infrastructure", "Order.Infrastructure\Order.Infrastructure.csproj", "{D3E193E3-3D71-487C-B81D-1BF25214D85F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oder.API", "Oder.API\Oder.API.csproj", "{FBD2D3EF-DE53-4538-8EF4-8C4536CFEF7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.API", "Oder.API\Order.API.csproj", "{FBD2D3EF-DE53-4538-8EF4-8C4536CFEF7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

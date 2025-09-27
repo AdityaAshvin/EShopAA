@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Order.ApplicationCore.Contracts.Services;
 using Order.ApplicationCore.Entities;
 
-namespace Oder.API.Controllers
+namespace Order.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
