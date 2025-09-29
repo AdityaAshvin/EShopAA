@@ -10,15 +10,23 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Db + DI
+builder.Configuration.GetConnectionString("EShopDb");
 builder.Services.AddDbContext<EShopDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("EShopDbConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EShopDb")));
+
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
+builder.Services.AddScoped<IShoppingCartItemRepository, ShoppingCartItemRepository>();
+builder.Services.AddScoped<IShoppingCartItemService, ShoppingCartItemService>();
 
 var app = builder.Build();
 

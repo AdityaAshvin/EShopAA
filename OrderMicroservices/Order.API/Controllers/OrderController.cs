@@ -59,5 +59,19 @@ namespace Order.API.Controllers
             _service.UpdateOrder(order);
             return NoContent();
         }
+
+        [HttpGet("customer/{customerId}")]
+        public IActionResult GetByCustomer(int customerId)
+        {
+            var orders = _service.GetOrdersByCustomer(customerId);
+            return Ok(orders);
+        }
+
+        [HttpGet("admin")]
+        public IActionResult GetPaged([FromQuery] int page = 1, [FromQuery] int pageSize = 20)
+        {
+            var orders = _service.GetPagedOrdersForAdmin(page, pageSize);
+            return Ok(orders);
+        }
     }
 }

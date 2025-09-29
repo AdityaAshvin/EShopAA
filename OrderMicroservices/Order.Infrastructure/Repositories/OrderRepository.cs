@@ -40,9 +40,21 @@ namespace Order.Infrastructure.Repositories
             return entity;
         }
 
+        public IEnumerable<OrderEntity> GetOrdersByCustomerId(int customerId)
+        {
+            return _dbContext.Orders.Include(o => o.OrderDetails).Where(o => o.CustomerId == customerId)
+                .OrderByDescending(o => o.OrderDate).ToList();
+        }
+
         public IEnumerable<OrderEntity> GetOrdersWithDetails()
         {
             return _dbContext.Orders.Include(o => o.OrderDetails).ToList();
+        }
+
+        public IEnumerable<OrderEntity> GetPagedOrders(int pageIndex, int pageSize)
+        {
+            return _dbContext.Orders.Include(o => o.OrderDetails).OrderByDescending(o => o.OrderDate)
+                     .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
 
         public OrderEntity Insert(OrderEntity entity)

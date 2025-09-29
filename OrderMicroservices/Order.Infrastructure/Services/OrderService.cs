@@ -38,6 +38,16 @@ namespace Order.Infrastructure.Services
             return _orders.GetById(id);
         }
 
+        public IEnumerable<OrderEntity> GetOrdersByCustomer(int customerId)
+        {
+            return _orders.GetOrdersByCustomerId(customerId);
+        }
+
+        public IEnumerable<OrderEntity> GetPagedOrdersForAdmin(int pageIndex, int pageSize)
+        {
+            return _orders.GetPagedOrders(pageIndex, pageSize);
+        }
+
         public void UpdateOrder(OrderEntity order)
         {
             _orders.Update(order);

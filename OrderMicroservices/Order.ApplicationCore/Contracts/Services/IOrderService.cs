@@ -14,5 +14,7 @@ namespace Order.ApplicationCore.Contracts.Services
         void DeleteOrder(int id);
         IEnumerable<OrderEntity> GetAllOrders();
         OrderEntity? GetOrder(int id);
+        IEnumerable<OrderEntity> GetOrdersByCustomer(int customerId);
+        IEnumerable<OrderEntity> GetPagedOrdersForAdmin(int pageIndex, int pageSize);
     }
 }
