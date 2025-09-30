@@ -13,8 +13,9 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Configuration.GetConnectionString("EShopDb");
 builder.Services.AddDbContext<ProductDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("EShopDbConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EShopDb")));
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
