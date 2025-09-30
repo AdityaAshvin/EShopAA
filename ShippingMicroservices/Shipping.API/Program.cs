@@ -16,8 +16,9 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Configuration.GetConnectionString("EShopDb");
 builder.Services.AddDbContext<ShippingDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("EShopDbConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EShopDb")));
 
 builder.Services.AddScoped<IShipperRepository, ShipperRepository>();
 builder.Services.AddScoped<IShipperService, ShipperService>();
