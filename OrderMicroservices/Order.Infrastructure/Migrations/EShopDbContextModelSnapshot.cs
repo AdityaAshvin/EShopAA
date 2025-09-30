@@ -203,6 +203,9 @@ namespace Order.Infrastructure.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Expiry")
                         .HasColumnType("datetime2");
 

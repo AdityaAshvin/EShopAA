@@ -27,6 +27,11 @@ namespace Product.Infrastructure.Repositories
             return null;
         }
 
+        public bool Exists(int id)
+        {
+            return _dbContext.Set<T>().Find(id) != null;
+        }
+
         public IEnumerable<T> GetAll()
         {
             return _dbContext.Set<T>().ToList();

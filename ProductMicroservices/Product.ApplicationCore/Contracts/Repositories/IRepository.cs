@@ -13,5 +13,6 @@ namespace Product.ApplicationCore.Contracts.Repositories
         T Update(T entity);
         IEnumerable<T> GetAll();
         T GetById(int id);
+        bool Exists(int id);
     }
 }
