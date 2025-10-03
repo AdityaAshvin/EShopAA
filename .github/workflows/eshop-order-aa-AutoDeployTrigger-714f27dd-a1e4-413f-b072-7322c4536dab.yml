@@ -1,0 +1,45 @@
+name: Trigger auto deployment for eshop-order-aa
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ master ]
+    paths:
+    - '**'
+    - '.github/workflows/eshop-order-aa-AutoDeployTrigger-714f27dd-a1e4-413f-b072-7322c4536dab.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.ESHOPORDERAA_AZURE_CREDENTIALS }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }}/OrderMicroservices/Order.API
+          _dockerfilePathKey_: _dockerfilePath_
+          _targetLabelKey_: _targetLabel_
+          registryUrl: eshopacraa.azurecr.io
+          registryUsername: ${{ secrets.ESHOPORDERAA_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.ESHOPORDERAA_REGISTRY_PASSWORD }}
+          containerAppName: eshop-order-aa
+          resourceGroup: DefaultResourceGroup-CCAN
+          imageToBuild: eshopacraa.azurecr.io/eshop-order-aa:${{ github.sha }}
+          
+            
+
+     
+
